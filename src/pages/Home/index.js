@@ -8,62 +8,35 @@ import { Container } from './styles';
 import { updateTheme } from '~/store/modules/theme/actions';
 
 // Components
-import Card from '~/components/Card';
+import Note from '~/components/Note';
 import Button from '~/components/Button';
 
-// Assets
-import { ReactComponent as Party } from '~/assets/img/party-face-apple.svg';
-
-// API Github
+// API
 import api from '~/services/api';
 
 const Home = () => {
   const dispatch = useDispatch();
   const mode = useSelector(state => state.theme);
 
-  const [creator, setCreator] = useState({ name: '', github: '' });
+  const [notes, setNotes] = useState([]);
 
   useEffect(() => {
     const getUser = async () => {
-      const result = await api.get('Vini-dev');
+      const response = await api.get('/idea');
 
-      const { data, error } = result;
+      const { data, error } = response;
 
-      if (error) return setCreator('Falha na requisição');
-
-      return setCreator({ name: data.name, github: data.html_url });
+      setNotes(data.data);
     };
     getUser();
   }, []);
 
   return (
     <Container>
-      <Card className="card-welcome">
-        <div className="container-emoji">
-          <Party className="emoji" />
-        </div>
-        <div className="container-text">
-          <span className="text">Edit /pages/Home!</span>
-        </div>
-        <Button
-          type="button"
-          onClick={() => dispatch(updateTheme())}
-          className="action"
-        >
-          Turn to {mode.theme === 'light' ? 'dark' : 'light'} theme
-        </Button>
-      </Card>
-
-      <div className="container-creator">
-        <span className="creator-name">{creator.name}</span>
-        <a
-          className="creator-link"
-          target="_blank"
-          rel="noopener noreferrer"
-          href={creator.github}
-        >
-          {creator.github}
-        </a>
+      <div className="ideas">
+        {notes.map(n => (
+          <Note key={n.id} title={n.title} text={n.text} />
+        ))}
       </div>
     </Container>
   );

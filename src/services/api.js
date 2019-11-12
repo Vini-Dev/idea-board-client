@@ -1,5 +1,11 @@
 import axios from 'axios';
+import https from 'https';
 
-export default axios.create({
-  baseURL: 'https://api.github.com/users/',
+const baseURL = process.env.REACT_APP_API_URL;
+
+const api = axios.create({
+  baseURL,
+  httpsAgent: new https.Agent({ rejectUnauthorized: false }),
 });
+
+export default api;
