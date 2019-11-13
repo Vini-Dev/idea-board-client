@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 30px;
-
-  .ideas {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 15px;
-  }
+  height: 100%;
+  width: 100%;
+  background-color: tomato;
+  display: flex;
+  flex-wrap: wrap;
 `;

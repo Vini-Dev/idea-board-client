@@ -22,6 +22,6 @@ const App = () => {
       </Router>
     </ThemeProvider>
   );
-}
+};
 
 export default App;
