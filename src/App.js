@@ -11,7 +11,7 @@ import { light, dark } from '~/styles/theme';
 
 const history = createBrowserHistory();
 
-function App() {
+const App = () => {
   const { theme } = useSelector(state => state.theme);
 
   return (

@@ -1,5 +1,5 @@
 {
-  "name": "base-project",
+  "name": "idea-board-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,7 +16,7 @@
     "styled-components": "^4.4.0"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "react-app-rewired start .env",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",

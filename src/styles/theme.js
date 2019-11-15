@@ -8,8 +8,14 @@ export const light = {
     background: '#f2f2f7',
     text: '#1c1c1c',
   },
-  card: {
+  note: {
     background: '#ffffff',
+    text: '#1c1c1c',
+  },
+  input: {
+    background: '#fafafa',
+    text: '#424242',
+    border: '#eee',
   },
 };
 
@@ -23,7 +29,13 @@ export const dark = {
     background: '#000000',
     text: '#ffffff',
   },
-  card: {
+  note: {
     background: '#1c1c1c',
+    text: '#ffffff',
+  },
+  input: {
+    background: '#39393E',
+    text: '#ffffff',
+    border: '#39393E',
   },
 };
