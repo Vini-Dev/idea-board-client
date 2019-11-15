@@ -25,13 +25,14 @@ module.exports = {
   ],
   rules: {
     'prettier/prettier' : 'error',
-      'react/jsx-filename-extension' : [
-          'warn' ,
-          {extensions : ['.jsx' , '.js']}
-      ],
-      'import/prefer-default-export' : 'off',
-      'react/jsx-props-no-spreading' : 'off',
-      'no-param-reassign' : 'off'
+    'react/jsx-filename-extension' : [
+        'warn' ,
+        {extensions : ['.jsx' , '.js']}
+    ],
+    'import/prefer-default-export' : 'off',
+    'react/jsx-props-no-spreading' : 'off',
+    'no-param-reassign' : 'off',
+    'no-underscore-dangle': ["error", { "allow": ["_id"] }]
   },
   settings : {
     'import/resolver' : {

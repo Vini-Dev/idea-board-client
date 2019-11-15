@@ -1,14 +1,22 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { lighten } from 'polished';
 
 export const Container = styled.div`
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
   border-radius: 8px;
-  overflow: hidden;
+
+  padding: 15px;
+  cursor: grab;
+  color: ${({ theme }) => theme.note.text};
+  background-color: ${({ theme }) => theme.button.action};
+
+  ${({ isDragging }) =>
+    isDragging &&
+    css`
+      cursor: grabbing;
+      background-color: ${({ theme }) => theme.button.text};
+    `}
 
   input,
   textarea {
