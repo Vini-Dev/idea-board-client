@@ -2,6 +2,7 @@ export const light = {
   button: {
     default: '#f2f2f7',
     action: '#5856D6',
+    success: '#34C759',
     text: '#ffffff',
   },
   content: {
@@ -23,6 +24,7 @@ export const dark = {
   button: {
     default: '#1c1c1c',
     action: '#5856D6',
+    success: '#30D158',
     text: '#ffffff',
   },
   content: {

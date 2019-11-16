@@ -3,20 +3,21 @@ import styled, { css } from 'styled-components';
 import { lighten } from 'polished';
 
 export const Container = styled.div`
-  position: relative;
+  position: absolute;
+  z-index: ${({ zindex }) => 100 + zindex};
+  top: ${({ top }) => top}%;
+  left: ${({ left }) => left}%;
+  width: 100%;
+  max-width: 320px;
   border-radius: 8px;
-
-  padding: 15px;
-  cursor: grab;
+  overflow: hidden;
+  line-height: 0px;
+  border: none;
   color: ${({ theme }) => theme.note.text};
-  background-color: ${({ theme }) => theme.button.action};
-
-  ${({ isDragging }) =>
-    isDragging &&
-    css`
-      cursor: grabbing;
-      background-color: ${({ theme }) => theme.button.text};
-    `}
+  background-color: ${({ theme }) => theme.button.default};
+  box-shadow: 0 2px 4px 5px rgba(0, 0, 0, 0.1);
+  transition: display 200ms linear;
+  transform: translateY(-50%);
 
   input,
   textarea {
@@ -25,10 +26,26 @@ export const Container = styled.div`
     padding: 10px;
     color: ${({ theme }) => theme.note.text};
     background-color: ${({ theme }) => theme.note.background};
+
+    &:hover {
+      cursor: grab;
+    }
+
+    &:focus {
+      cursor: text;
+    }
+
+    ${({ isDragging }) =>
+      isDragging &&
+      css`
+        cursor: grabbing;
+        display: none;
+      `}
   }
 
   input {
     font-size: 20px;
+    font-weight: bold;
     border-bottom: 1px solid
       ${({ theme }) => lighten(0.05, theme.note.background)};
     background-color: ${({ theme }) => theme.note.background};
@@ -36,7 +53,8 @@ export const Container = styled.div`
 
   textarea {
     font-size: 16px;
-    resize: vertical;
-    height: 100%;
+    resize: none;
+    min-height: 80px;
+    /* height: 100%; */
   }
 `;

@@ -1,3 +1,3 @@
 export function updateTheme() {
-    return { type: '@theme/UPDATE' };
+  return { type: '@theme/UPDATE' };
 }

@@ -1,55 +1,27 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useDrop } from 'react-dnd';
-
+import React from 'react';
+import { IoIosAdd } from 'react-icons/io';
 // import { useSelector, useDispatch } from 'react-redux';
 
 // Style
-import { Container } from './styles';
+import { Container, Header } from './styles';
 
+import Button from '../../components/Button';
 // Actions redux
 // import { updateTheme } from '~/store/modules/theme/actions';
 
-// Components
-import Note from '~/components/Note';
-// import Button from '~/components/Button';
-
-// API
-import api from '~/services/api';
+import Board from '../../components/Board';
 
 const Home = () => {
-  const ref = useRef();
   // const dispatch = useDispatch();
   // const mode = useSelector(state => state.theme);
 
-  const [notes, setNotes] = useState([]);
-
-  useEffect(() => {
-    const getUser = async () => {
-      const response = await api.get('/idea');
-
-      const { data } = response;
-
-      setNotes(data.data);
-    };
-    getUser();
-  }, []);
-
-  const [, dropRef] = useDrop({
-    accept: 'Note',
-    hover(item, monitor) {
-      const position = ref.current.getBoundingClientRect();
-      item.left = position.left;
-      item.top = position.top;
-    },
-  });
-
-  dropRef(ref);
-
   return (
-    <Container ref={ref}>
-      {notes.map(n => (
-        <Note key={n._id} id={n._id} title={n.title} text={n.text} />
-      ))}
+    <Container>
+      <Header>
+        <h1>Idea Board</h1>
+        <Button className="action" text="Nova" icon={<IoIosAdd />} />
+      </Header>
+      <Board />
     </Container>
   );
 };

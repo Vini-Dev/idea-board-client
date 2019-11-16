@@ -3,24 +3,28 @@ import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-const Button = ({ children, onClick, type, className }) => {
+const Button = ({ onClick, icon, text, type, className }) => {
   return (
     <Container onClick={onClick} type={type} className={`default ${className}`}>
-      {children}
+      <div className="icon">{icon}</div>
+      <div className="text">{text}</div>
     </Container>
   );
 };
 
 Button.defaultProps = {
-  children: <></>,
   onClick: () => {},
   className: '',
+  type: 'button',
+  text: '',
+  icon: {},
 };
 
 Button.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node),
   onClick: PropTypes.func,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  text: PropTypes.string,
+  icon: PropTypes.objectOf(Object),
   className: PropTypes.string,
 };
 

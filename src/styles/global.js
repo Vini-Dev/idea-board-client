@@ -24,4 +24,9 @@ export default createGlobalStyle`
         user-select: none;
     }
     
+    #root {
+        color: ${({ theme }) => theme.content.text};
+        background-color: ${({ theme }) => theme.content.background};
+    }
+    
 `;

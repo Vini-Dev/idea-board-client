@@ -7,6 +7,17 @@ export const Container = styled.button`
   color: ${({ theme }) => theme.button.text};
   background: ${({ theme }) => theme.button.default};
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .icon {
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   &.action {
     background: ${({ theme }) => theme.button.action};
