@@ -6,7 +6,7 @@ export const Container = styled.button`
   border-radius: 4px;
   color: ${({ theme }) => theme.button.text};
   background: ${({ theme }) => theme.button.default};
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,6 +17,10 @@ export const Container = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .text {
+    font-weight: 600;
   }
 
   &.action {

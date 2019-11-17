@@ -45,7 +45,7 @@ export const Container = styled.div`
 
   input {
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 800;
     border-bottom: 1px solid
       ${({ theme }) => lighten(0.05, theme.note.background)};
     background-color: ${({ theme }) => theme.note.background};
