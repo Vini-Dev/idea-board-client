@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux';
 
-import theme from './theme/reducer';
-import notes from './notes/reducer';
+import notes from './notes';
 
 export default combineReducers({
-  theme,
   notes,
 });

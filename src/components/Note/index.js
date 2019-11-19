@@ -6,55 +6,41 @@ import { useDrag } from 'react-dnd';
 
 import { Container } from './styles';
 
-import { updateAction } from '~/store/modules/notes/actions';
+// Actions redux
+import { Creators as NoteActions } from '~/store/ducks/notes';
 
-const Note = ({ id, top, left, zindex, title, text, className }) => {
+const Note = ({ _id, top, left, zindex, title, text, className }) => {
   const dispatch = useDispatch();
-
   const [noteValues, setNoteValues] = useState({ title, text });
-  const [noteParams, setNoteParams] = useState({ top, left, zindex });
 
   // Quando o usuário arrasta o card essa função é ativada
   const [{ isDragging }, dragRef] = useDrag({
-    item: { type: 'Note', id, top, left },
+    item: { type: 'Note', _id, top, left },
     collect: monitor => ({
       isDragging: monitor.isDragging(),
     }),
   });
 
-  useEffect(() => {
-    dispatch(
-      updateAction({
-        id,
-        left: noteParams.left,
-        top: noteParams.top,
-      })
-    );
-  }, [noteParams]);
-
-  // Ao editar uma nota, a função espera 3s para atirar o update
+  // Ao editar uma nota, a função espera 2s para atualizar o estado no redux
   useEffect(() => {
     const update = () => {
-      console.log('Update');
-      // dispatch(
-      //   updateAction({
-      //     id,
-      //     title: noteValues.title,
-      //     text: noteValues.text,
-      //   })
-      // );
+      if (noteValues.title !== title || noteValues.text !== text) {
+        dispatch(
+          NoteActions.updateValue(_id, noteValues.title, noteValues.text)
+        );
+      }
     };
 
     const timer = setTimeout(() => {
       update();
-    }, 3000);
+    }, 2000);
 
     return () => {
       clearTimeout(timer);
     };
   }, [noteValues]);
 
-  // Altera o estado do card
+  // Altera o estado do card titulo e texto
   const handle = event => {
     event.persist();
 
@@ -74,15 +60,15 @@ const Note = ({ id, top, left, zindex, title, text, className }) => {
       top={top}
       left={left}
     >
-      <input type="text" name="title" defaultValue={noteValues.title} onKeyUp={handle} />
-      <TextareaAutosize name="text" defaultValue={noteValues.text} onKeyUp={handle} />
+      <input type="text" name="title" defaultValue={title} onKeyUp={handle} />
+      <TextareaAutosize name="text" defaultValue={text} onKeyUp={handle} />
     </Container>
   );
 };
 
 Note.defaultProps = {
   className: '',
-  id: '',
+  _id: '',
   title: '',
   text: '',
   zindex: 100,
@@ -92,7 +78,7 @@ Note.defaultProps = {
 
 Note.propTypes = {
   className: PropTypes.string,
-  id: PropTypes.string,
+  _id: PropTypes.string,
   title: PropTypes.string,
   text: PropTypes.string,
   zindex: PropTypes.number,

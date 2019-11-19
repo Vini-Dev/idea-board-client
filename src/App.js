@@ -12,7 +12,7 @@ import { light, dark } from '~/styles/theme';
 const history = createBrowserHistory();
 
 const App = () => {
-  const { theme } = useSelector(state => state.theme);
+  const theme = useSelector(state => state.theme);
 
   return (
     <ThemeProvider theme={theme === 'light' ? light : dark}>
